@@ -1,0 +1,174 @@
+@extends('layouts.master')
+
+@section('content')
+    <section id="page-tree">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5 col-sm-5">
+                    <h1>About me</h1>
+                </div>
+                <div class="col-md-7 col-sm-7">
+                    <ol class="breadcrumb pull-right hidden-xs">
+                        <li><a href="index.html"><i class="ion-home"></i> Home</a></li>
+                        <li><a>pages</a></li>
+                        <li class="active"><a>about-me</a></li>
+                    </ol>
+                </div>
+            </div><!--row-->
+        </div><!--container-->
+    </section><!--page-tree-->
+
+    <section id="single-person" class="padding-60">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="flexslider">
+                        <ul class="slides">
+                            <li>
+                                <img src="img/team-1.jpg" class="img-responsive" alt="">
+                            </li>
+                            <li>
+                                <img src="img/team-2.jpg" class="img-responsive" alt="">
+                            </li>
+                            <li>
+                                <img src="img/team-3.jpg" class="img-responsive" alt="">
+                            </li>
+                        </ul>
+                    </div><!--flex slider-->
+                </div>
+                <div class="col-md-7">
+                    <h3>Victoria <small>(Manager)</small></h3>
+                    <ul class="list-unstyled list-inline social">
+                        <li><a href="#"><i class="ion-social-facebook-outline"  data-toggle="tooltip" data-placement="top" title="" data-original-title="Like On Facebook"></i></a></li>
+                        <li><a href="#"><i class="ion-social-twitter-outline"  data-toggle="tooltip" data-placement="top" title="" data-original-title="Follow On twitter"></i></a></li>
+                        <li><a href="#"><i class="ion-social-googleplus-outline"  data-toggle="tooltip" data-placement="top" title="" data-original-title="Follow On googleplus"></i></a></li>
+                        <li><a href="#"><i class="ion-social-pinterest-outline"  data-toggle="tooltip" data-placement="top" title="" data-original-title="pinterest"></i></a></li>
+                        <li><a href="#"><i class="ion-social-skype-outline"  data-toggle="tooltip" data-placement="top" title="" data-original-title="skype"></i></a></li>
+
+                    </ul>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint delectus tenetur voluptate similique adipisci excepturi commodi omnis non aspernatur amet reiciendis incidunt ex nobis ipsam unde expedita doloribus natus perferendis.</p>
+                    <ul class=" list-unstyled">
+                        <li><i class="ion-checkmark-round"></i> Fusce sit amet orci quis arcu vestibulum vestibulum sed ut felis.</li>
+                        <li><i class="ion-checkmark-round"></i> Phasellus in risus quis lectus iaculis vulputate id quis nisl.</li>
+                        <li><i class="ion-checkmark-round"></i> Iaculis vulputate id quis nisl.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="divied-40"></div>
+            <div class="row">
+                <div class="col-md-6 margin-btm20">
+                    <h3>My Skills</h3>
+                    <h3 class="heading-progress">Web Design <span class="pull-right">88%</span></h3>
+                    <div class="progress">
+                        <div class="progress-bar" style="width: 88%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="88" role="progressbar">
+                        </div>
+                    </div>
+                    <h3 class="heading-progress">Web Development <span class="pull-right">78%</span></h3>
+                    <div class="progress">
+                        <div class="progress-bar" style="width: 78%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="78" role="progressbar">
+                        </div>
+                    </div>
+                    <h3 class="heading-progress">Marketing <span class="pull-right">82%</span></h3>
+                    <div class="progress">
+                        <div class="progress-bar" style="width: 82%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="82" role="progressbar">
+                        </div>
+                    </div>
+                    <h3 class="heading-progress">Seo <span class="pull-right">72%</span></h3>
+                    <div class="progress">
+                        <div class="progress-bar" style="width: 72%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="82" role="progressbar">
+                        </div>
+                    </div>
+                </div><!--progress bars-->
+                <div class="col-md-6">
+                    <h3>Some of my highlights</h3>
+                    <!--collapse-->
+                    <div class="panel-group" id="accordion">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                        100% responsive layout
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseOne" class="panel-collapse collapse in">
+                                <div class="panel-body">
+                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. probably haven't heard of them accusamus labore sustainable VHS.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                        Built With Bootstrap3
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseTwo" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                                        HTML5 And CSS3
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseThree" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--collapse end-->
+                </div>
+            </div>
+            <div class="divied-40"></div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h3>My Recently Work</h3>
+                </div>
+
+                <div class="portfolio-item mix seo col-xs-12 col-sm-4">
+                    <a href="portfolio-single.html">
+                        <div class="image-sec">
+                            <img class="img-responsive" src="img/img-1.jpg" alt="Portfolio">
+                            <div class="image-overlay">
+                                <p><i class="ion-ios7-plus-empty"></i></p>
+                            </div>
+                        </div> <!--image-->
+                    </a>
+                </div> <!--portfolio-item -->
+
+                <div class="portfolio-item mix html seo col-xs-12 col-sm-4">
+                    <a href="portfolio-single.html">
+                        <div class="image-sec">
+                            <img class="img-responsive" src="img/img-2.jpg" alt="Portfolio">
+                            <div class="image-overlay">
+                                <p><i class="ion-ios7-plus-empty"></i></p>
+                            </div>
+                        </div> <!--image-->
+                    </a>
+                </div> <!--portfolio-item -->
+
+                <div class="portfolio-item mix wordpress html Design col-xs-12 col-sm-4">
+                    <a href="portfolio-single.html">
+                        <div class="image-sec">
+                            <img class="img-responsive" src="img/img-3.jpg" alt="Portfolio">
+                            <div class="image-overlay">
+                                <p><i class="ion-ios7-plus-empty"></i></p>
+                            </div>
+                        </div> <!--image-->
+                    </a>
+                </div> <!--portfolio-item -->
+            </div>
+        </div>          
+    </section><!--single person sec end-->
+@stop
