@@ -16,6 +16,7 @@ Route::get('/', 'HomeController@showWelcome');
 
 Route::get('/contact', 'HomeController@showLocation');
 
+Route::get('/calendar', 'HomeController@showCalendar');
 
 Route::get('/php_info', function()
 {

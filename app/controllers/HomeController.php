@@ -57,4 +57,8 @@ class HomeController extends BaseController {
 			return Redirect::action('HomeController@showWelcome');
 		}
 	}
+	public function showCalendar()
+	{
+	return View::make('portfolios.calendar');
+	}
 }
