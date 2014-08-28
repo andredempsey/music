@@ -39,7 +39,6 @@
                         <a href="#" class="dropdown-toggle js-activated" data-toggle="dropdown">{{{Auth::user()->first_name}}} <i class="ion-ios7-arrow-down"></i></a>
                         <ul class="dropdown-menu">
                             <li><a href="{{action('UsersController@show', Auth::user()->id)}}">Profile</a></li>
-                            <li><a href="about.html">Schedule</a></li>
                             <li><a href="{{action('UsersController@logout')}}">Logout</a></li>
                         </ul>
                     @else

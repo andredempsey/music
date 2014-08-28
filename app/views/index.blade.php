@@ -64,60 +64,46 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 margin-btm40 text-center">
-                    <h1>Latest News</h1>
+                    <h1>Latest Blogs</h1>
                     <h2 class="subtitle"><i class="ion-compose"></i></h2>
                 </div>
-                <div class="col-sm-4 col-xs-12 margin-btm20">
-                    <a href="blog-post.html">
-                        <div class="image-sec">
-                            <img class="img-responsive" src="img/img-6.jpg" alt="Portfolio">
-                            <div class="image-overlay">
-                                <p>by author | 7 may | Design</p>
+                    <div id="grid" class="row">
+                       @foreach ($posts as $post)
+                        <div class="portfolio-item col-xs-12 col-sm-4">
+                            <div class="blog-grid-box">
+                                <a href="{{action('PostsController@show', array($post->slug))}}">
+                                    <div class="image-sec">
+                                        <img class="img-responsive" src="{{$post->img_path}}" alt="Portfolio">
+                                        <div class="image-overlay">
+                                            <p><i class="ion-ios7-plus-empty"></i></p>
+                                        </div>
+                                    </div> <!--image-->
+                                </a>
+                                <div class="blog-grid-desc">
+                                    <h4><a href="{{action('PostsController@show', array($post->slug))}}" class="hover-color">{{$post->title}}</a></h4>
+                                    <div class="blog-grid-meta">
+                                        <span><a href="#" class="hover-color">By {{$post->user->first_name . ' '. $post->user->last_name}}</a></span>
+                                        <span>|</span>
+                                        @foreach ($post->categories as $cat)
+                                            <span><a href="#" class="hover-color">{{$cat->tagname}}</a></span>
+                                            <span>|</span>
+                                        @endforeach
+                                    </div>
+                                    <p>
+                                        {{substr($post->renderBody(), 0, 50) . ' ...'}}
+                                    </p>
+                                    <p class="more-button"><a href="{{action('PostsController@show', array($post->slug))}}" class="btn btn-xs btn-dark">Read More</a></p>
+                                    <div class="blog-grid-btm">
+                                        <h3><span><a href="#" class="hover-color"><i class="ion-calendar"></i> 10 may 2014</a></span>
+                                            <span class="pull-right"><a href="#" class="hover-color"><i class="ion-heart"></i> 2343</a></span></h3>
+                                    </div>
+                                </div>
                             </div>
-                        </div> <!--image-->                          
-                    </a>
-                    <div class="blog-desc">
-                        <h3><a href="blog-post.html" class="hover-color">Amazing theme for Multi-Purpose</a></h3>
-                        <p>
-                            aliqua.adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.
-                        </p>
-                    </div>
-                </div>
-                <div class="col-sm-4 col-xs-12 margin-btm20">
-                    <a href="blog-post.html">
-                        <div class="image-sec">
-                            <img class="img-responsive" src="img/img-1.jpg" alt="Portfolio">
-                            <div class="image-overlay">
-                                <p>by author | 7 may | Design</p>
-                            </div>
-                        </div> <!--image-->                          
-                    </a>
-                    <div class="blog-desc">
-                        <h3><a href="blog-post.html" class="hover-color">Amazing theme for Multi-Purpose</a></h3>
-                        <p>
-                            aliqua.adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.
-                        </p>
-                    </div>
-                </div>
-                <div class="col-sm-4 col-xs-12 margin-btm20">
-                    <a href="blog-post.html">
-                        <div class="image-sec">
-                            <img class="img-responsive" src="img/img-2.jpg" alt="Portfolio">
-                            <div class="image-overlay">
-                                <p>by author | 7 may | Design</p>
-                            </div>
-                        </div> <!--image-->                          
-                    </a>
-                    <div class="blog-desc">
-                        <h3><a href="blog-post.html" class="hover-color">Amazing theme for Multi-Purpose</a></h3>
-                        <p>
-                            aliqua.adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.
-                        </p>
-                    </div>
-                </div>                   
+                        </div> <!--portfolio-item -->
+                        @endforeach
+                    </div> <!--grid -->                
             </div><!--row--> 
             <div class="divied-40"></div>
-
         </div><!--container-->
     </section><!--latest news-->
     <hr> 

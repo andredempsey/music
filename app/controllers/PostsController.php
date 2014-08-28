@@ -24,6 +24,7 @@ class PostsController extends BaseController {
 		$isFiltered = ($searchTitle!='') ? True : False; 
 		// $posts = Post::with('user')->where('title', 'LIKE', '%' . $searchTitle . '%')->orderBy('created_at', 'desc')->paginate(4);
 		$posts = Post::filteredPosts($searchTitle);
+		$categories = Category::orderBy('tagname', 'asc')->get();
 		// $recentposts = Post::with('user')->take(4)->orderBy('created_at', 'desc')->get();
 		// $number = count(Post::with('user')->where('title', 'LIKE', '%' . $searchTitle . '%')->orderBy('created_at', 'desc')->get());
 		// $number = count($posts);
@@ -32,32 +33,36 @@ class PostsController extends BaseController {
 			'posts' => $posts,
 			'number'  => $number,
 			'isFiltered' => $isFiltered,
+			'categories' => $categories
 			// 'recentposts' => $recentposts
 		];
 		
 	    return View::make('posts.index')->with($data);
 	}
 
-	/**
+/**
 	 * Show the form for creating a new resource.
-	 * GET /posts/create
 	 *
 	 * @return Response
 	 */
 	public function create()
 	{
-		//
+		// return "Show the form for creating a new resource";
+
+		return View::make('posts.create-edit');
 	}
+
 
 	/**
 	 * Store a newly created resource in storage.
-	 * POST /posts
 	 *
 	 * @return Response
 	 */
 	public function store()
 	{
-		//
+		// return "Store a newly created resource in storage.";
+		return $this->update(null);
+
 	}
 
 	/**
@@ -75,38 +80,100 @@ class PostsController extends BaseController {
 
 	/**
 	 * Show the form for editing the specified resource.
-	 * GET /posts/{id}/edit
 	 *
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit($slug)
 	{
-		//
+		$post = Post::findBySlug($slug);
+		if(Auth::check() && (Auth::user()->id == $post->user_id || Auth::user()->is_admin))
+		{
+		    return View::make('posts.create-edit')->with('post', $post);
+		}
+		else
+		{
+			Session::flash('errorMessage', 'Insufficient privileges.');
+			return Redirect::action('PostsController@show', $slug);
+		}
 	}
 
 	/**
 	 * Update the specified resource in storage.
-	 * PUT /posts/{id}
 	 *
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($slug)
 	{
-		//
+
+		if (!isset($slug)) 
+		{
+			$post = new Post();
+			$post->user_id = Auth::user()->id;
+
+			$messageValue = 'Post successfully added!';
+			$eMessageValue = 'There was a problem adding the post.';
+		} 
+		else 
+		{
+			$post = Post::findBySlug($slug);
+
+			$messageValue = 'Post was successfully updated!';
+			$eMessageValue = 'There was a problem updating your post.';
+		}
+
+		if(!(Auth::check() && (Auth::user()->id == $post->user_id || Auth::user()->is_admin)))
+		{
+			Session::flash('errorMessage', 'Insufficient privileges.');
+			return Redirect::action('PostsController@index');
+		}
+
+		$validator = Validator::make(Input::all(), Post::$rules);
+
+		if ($validator->fails()) 
+		{
+			Session::flash('errorMessage', $eMessageValue);
+			return Redirect::back()->withInput()->withErrors($validator);
+		}
+		else
+		{
+			$post->title = Input::get('title');
+			$post->body = Input::get('body');
+			$post->slug = Input::get('title');
+			$post->save();	
+
+			if(Input::hasFile('image') && Input::file('image')->isValid())
+			{
+				$post->addUploadedImage(Input::file('image'));
+				$post->save();
+			}
+
+			Session::flash('successMessage', $messageValue);
+			return Redirect::action('PostsController@show', $post->slug);
+		}
 	}
 
 	/**
 	 * Remove the specified resource from storage.
-	 * DELETE /posts/{id}
 	 *
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy($slug)
 	{
-		//
+		$post = Post::findBySlug($slug);
+		if(Auth::check() && (Auth::user()->id == $post->user_id || Auth::user()->is_admin))
+		{
+			$post->delete();
+			Session::flash('successMessage', 'Post was successfully deleted!');
+			return Redirect::action('PostsController@index');
+		}
+		else
+		{
+			Session::flash('errorMessage', 'Insufficient privileges.');
+			return Redirect::action('PostsController@index');
+		}
 	}
 
 }

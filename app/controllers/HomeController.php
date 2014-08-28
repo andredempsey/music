@@ -19,10 +19,12 @@ class HomeController extends BaseController {
 	{
 		$users = User::where('role_id','3')->orderBy('last_name','asc')->get();
 		$subjects = Subject::orderBy('subject','asc')->get()->lists('subject');
-		
+		$posts = Post::take(3)->orderBy('created_at', 'desc')->get();
+
 		$data = [
 			'users' => $users,
 			'subjects'  => $subjects,
+			'posts' => $posts
 		];
 		return View::make('index')->with($data);
 	}

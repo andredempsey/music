@@ -40,7 +40,6 @@
 								<div class="form-group">
 									{{ Form::checkbox('remember', 'remember', false, ['id' => 'remember']) }}
 									{{ Form::label('remember', ' Remember Me') }}<br>
-									<a href="{{action('RemindersController@remind')}}" class="forgot-password">Forgot password?</a>
 									{{Form::Submit('Login', array('class' => 'btn pull-right'))}}
 									<div class="clearfix"></div>
 								</div>

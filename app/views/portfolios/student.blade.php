@@ -63,8 +63,6 @@
     </div><!--portfolio single description row end-->
     <div class="divied-60"></div>
 
-
-{{$cal->generate()}}
     <div class="row">
         <div class="col-md-12 margin-btm20">
             <h3>Lessons</h3>

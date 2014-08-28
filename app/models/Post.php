@@ -13,9 +13,19 @@ class Post extends BaseModel {
     ];
 
     public function user()
-{
-    return $this->belongsTo('User');
-}
+    {
+        return $this->belongsTo('User');
+    }
+
+    /**
+    * allows retrieval of categories from the Post model
+    * syntax $post->categories
+    */
+    public function categories()
+    {
+        return $this->belongsToMany('Category');
+    }
+
     public function addUploadedImage ($image)
     {
         $systemPath = public_path() . '/' . $this->imgDir . '/';    

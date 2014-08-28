@@ -16,8 +16,6 @@ Route::get('/', 'HomeController@showWelcome');
 
 Route::get('/contact', 'HomeController@showLocation');
 
-Route::get('/calendar', 'HomeController@showCalendar');
-
 Route::get('/php_info', function()
 {
 	phpinfo();
@@ -68,23 +66,6 @@ Route::get('/register', 'UsersController@showRegister');
 Route::post('/register', 'UsersController@doRegister');
 
 Route::post('/contact', 'HomeController@addContact');
-
-Route::get('/reset', 'RemindersController@remind');
-
-Route::post('password/reset', array(
-  'uses' => 'RemindersController@request',
-  'as' => 'password.request'
-));
-
-Route::get('password/reset/{token}', array(
-  'uses' => 'RemindersController@reset',
-  'as' => 'password.reset'
-));
-
-Route::post('password/reset/{token}', array(
-  'uses' => 'RemindersController@update',
-  'as' => 'password.update'
-));
 
 Route::get('/{last_name}', 'UsersController@showInstructor');
 

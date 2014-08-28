@@ -56,8 +56,8 @@
             <div class="flexslider">
                 <img src="{{$user->detail->img_path}}" class="img-responsive" alt="{{$user->last_name}}">
             </div>
-              <div class="sidebar-box  port-single-desc">
-                  <a href="#" class="btn btn-dark">View Live Demo</a>
+              <div class="sidebar-box  port-single-desc text-center">
+                  <strong><a href="{{'mailto:'. $user->email}}" title="{{'mailto:'. $user->email}}">{{'Contact ' . $user->first_name . ' at:  ' . $user->email}}</a></strong>
             </div>
         </div>
         <div class="col-md-5">
@@ -78,49 +78,53 @@
                 </ul><!--subject list-->
         </div>
     </div><!--portfolio single description row end-->
-
     <div style="background-color: white" class="calendar-container" >
         <div id='calendar'></div>
     </div>
     <div class="divied-60"></div>
     <div class="row">
         <div class="col-md-12 margin-btm20">
-            <h3>Blogs</h3>
-        </div>
-        <div class="col-md-12">
-            <div class="row">
-                <div class="portfolio-item mix seo col-xs-12 col-sm-4">
-                    <a href="portfolio-single.html">
-                        <div class="image-sec">
-                            <img class="img-responsive" src="/img/img-1.jpg" alt="Portfolio">
-                            <div class="image-overlay">
-                                <p><i class="ion-ios7-plus-empty"></i></p>
+        @if(Auth::check() && (Auth::user()->id == $user->id || Auth::user()->is_admin))
+            <div class="badge pull-right"><a href="{{ action('PostsController@create')}}">Create New Post</a></div>
+        @endif
+        <h3>Blogs</h3>
+          <div class="col-md-12">
+            <div id="grid" class="row">
+               @foreach ($posts as $post)
+                <div class="portfolio-item mix col-xs-12 col-sm-4">
+                    <div class="blog-grid-box">
+                        <a href="{{action('PostsController@show', array($post->slug))}}">
+                            <div class="image-sec">
+                                <img class="img-responsive" src="{{$post->img_path}}" alt="Portfolio">
+                                <div class="image-overlay">
+                                    <p><i class="ion-ios7-plus-empty"></i></p>
+                                </div>
+                            </div> <!--image-->
+                        </a>
+                        <div class="blog-grid-desc">
+                            <h4><a href="{{action('PostsController@show', array($post->slug))}}" class="hover-color">{{$post->title}}</a></h4>
+                            <div class="blog-grid-meta">
+                                <span><a href="#" class="hover-color">By {{$post->user->first_name . ' '. $post->user->last_name}}</a></span>
+                                <span>|</span>
+                                @foreach ($post->categories as $cat)
+                                    <span><a href="#" class="hover-color">{{$cat->tagname}}</a></span>
+                                    <span>|</span>
+                                @endforeach
                             </div>
-                        </div> <!--image-->
-                    </a>
-                </div> <!--portfolio-item -->
-
-                <div class="portfolio-item mix html seo col-xs-12 col-sm-4">
-                    <a href="portfolio-single.html">
-                        <div class="image-sec">
-                            <img class="img-responsive" src="/img/img-2.jpg" alt="Portfolio">
-                            <div class="image-overlay">
-                                <p><i class="ion-ios7-plus-empty"></i></p>
+                            <p>
+                                {{substr($post->renderBody(), 0, 50) . ' ...'}}
+                            </p>
+                            <p class="more-button"><a href="{{action('PostsController@show', array($post->slug))}}" class="btn btn-xs btn-dark">Read More</a></p>
+                            <div class="blog-grid-btm">
+                                <h3><span><a href="#" class="hover-color"><i class="ion-calendar"></i> {{{ $post->created_at->format('F jS Y')}}}</a></span>
+                                    <span class="pull-right"><a href="#" class="hover-color"><i class="ion-heart"></i> 2343</a></span></h3>
                             </div>
-                        </div> <!--image-->
-                    </a>
+                        </div>
+                    </div>
                 </div> <!--portfolio-item -->
-
-                <div class="portfolio-item mix wordpress html Design col-xs-12 col-sm-4">
-                    <a href="portfolio-single.html">
-                        <div class="image-sec">
-                            <img class="img-responsive" src="/img/img-3.jpg" alt="Portfolio">
-                            <div class="image-overlay">
-                                <p><i class="ion-ios7-plus-empty"></i></p>
-                            </div>
-                        </div> <!--image-->
-                    </a>
-                </div> <!--portfolio-item -->
+                @endforeach
+            </div> <!--grid -->
+            <div class="text-center">{{ $posts->links() }}</div>
             </div>
         </div>
     </div>

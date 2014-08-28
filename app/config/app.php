@@ -123,8 +123,6 @@ return array(
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Way\Generators\GeneratorsServiceProvider',
 		'Laravel\Cashier\CashierServiceProvider',
-		'Makzumi\Calendar\CalendarServiceProvider',
-
 	),
 
 	/*
