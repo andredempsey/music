@@ -64,22 +64,45 @@
     <div class="divied-60"></div>
 
     <div class="row">
+        <h3>Set Up Recurring Payment</h3>
+        <div class="col-md-12 margin-btm20">
+            <span class="badge">{{{($user->stripe_active)?'Active Plan':'No Active Plan'}}}</span>
+            @if (Auth::user()->onPlan('MP2014'))
+                  <span class="badge">Monthly Subscriber</span>
+            @endif
+        <form action="/payment" method="POST">
+          <script
+            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-key="pk_test_4XHB0o3cQ8L1TkkvyGrpAp3I"
+            data-image="/square-image.png"
+            data-name="Demo Site"
+            data-description="2 widgets ($20.00)"
+            data-amount="2000">
+          </script>
+    </form>
+        </div>
+    </div>
+    <div class="divied-40"></div>
+    <div class="row">
         <div class="col-md-12 margin-btm20">
             <h3>Lessons</h3>
         </div>
         <div class="col-md-12">
             <div class="row">
-                <table class="table-striped table-responsive">
+                <table class="table-striped table-bordered table-responsive">
                     <tr>
-                    <th>Date</th>
-                    <th>Duration</th>
+                        <th>Date</th>
+                        <th>Duration</th>
                     </tr>
-                    <td>1 Jan 14</td>
-                    <td>1hr</td>
+                        @foreach ($user->studentLessons as $lesson)
+                    <tr>
+                        <td>{{{$lesson->created_at}}}</td>
+                        <td>{{{$lesson->duration}}}</td>
+                        @endforeach
+                    </tr>
                 </table>
             </div>
         </div>
     </div>
 </div><!--portfolio single container end-->
-    <div class="divied-40"></div>
 @stop

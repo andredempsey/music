@@ -75,12 +75,21 @@ class User extends Eloquent implements UserInterface, RemindableInterface, Billa
 	}
 
 	/**
-	* allows retrieval of lesson information from the User model
+	* allows retrieval of lesson information from the User model (for student)
 	* syntax $user->lesson
 	*/
-	public function lessons()
+	public function studentLessons()
 	{
-	    return $this->hasMany('Lesson');
+	    return $this->hasMany('Lesson', 'user_id');
+	}
+
+	/**
+	* allows retrieval of lesson information from the User model (for instructor)
+	* syntax $user->lesson
+	*/
+	public function instructorLessons()
+	{
+	    return $this->hasMany('Lesson','instructor_id');
 	}
 
 	/**
