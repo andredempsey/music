@@ -2,21 +2,12 @@
 
 class HomeController extends BaseController {
 
-	/*
-	|--------------------------------------------------------------------------
-	| Default Home Controller
-	|--------------------------------------------------------------------------
-	|
-	| You may wish to use controllers instead of, or in addition to, Closure
-	| based routes. That's great! Here is an example controller method to
-	| get you started. To route to this controller, just add the route:
-	|
-	|	Route::get('/', 'HomeController@showWelcome');
-	|
-	*/
 
 	public function showWelcome()
 	{
+		Mail::send('emails.auth.reminder', array('name' => 'Andre'), function($message){
+				$message->to('andre.dempsey@live.com','Andre Dempsey')->subject('Test email');
+		});
 		$users = User::where('role_id','3')->orderBy('last_name','asc')->get();
 		$subjects = Subject::orderBy('subject','asc')->get()->lists('subject');
 		$posts = Post::take(3)->orderBy('created_at', 'desc')->get();

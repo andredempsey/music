@@ -21,7 +21,8 @@ class User extends Eloquent implements UserInterface, RemindableInterface, Billa
     	'first_name'=>'required|max:100',
     	'last_name'=>'required|max:100',
     	'email'=>'required|email',
-    	'password'=>'required|min:6'
+    	'password'=>'required|min:6',
+    	'user-captcha' => 'required|captcha'
     ];
 
     const ROLE_ADMIN = 1;

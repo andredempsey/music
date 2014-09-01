@@ -8,7 +8,9 @@
 		"way/generators": "2.*",
 		"laravel/cashier": "~2.0",
  		"erusev/parsedown": "0.8.*",
-		"ezyang/htmlpurifier": "4.6.*"
+		"ezyang/htmlpurifier": "4.6.*",
+		"guzzlehttp/guzzle": "~4.0",
+		"mohsen/captcha": "dev-master"
 	},
 	"autoload": {
 		"classmap": [

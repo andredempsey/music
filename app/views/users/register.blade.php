@@ -52,6 +52,10 @@
 							<br>
 							{{Form::password('password2', null, array('class' => 'form-control'))}}
 						</div>
+						<div class="form-group">
+							<img src="{{ URL::to('/captcha')}}">
+							<input type="text" name="user-captcha">
+						</div>
 						{{Form::Submit('Register', array('class' => 'btn pull-right'))}}
 						<div class="clearfix"></div>
 					{{Form::close()}}
